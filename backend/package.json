@@ -4,7 +4,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "setup-db": "node scripts/setup-database.js",
+    "reset-db": "node -e \"console.log('⚠️ Reset do banco não implementado por segurança')\""
   },
   "engines": {
     "node": "18.x"

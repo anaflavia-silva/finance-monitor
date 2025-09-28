@@ -10,8 +10,8 @@ const PORT = process.env.PORT || 5000;
 const corsOptions = {
   origin: [
     "http://localhost:3000", // desenvolvimento
-    process.env.FRONTEND_URL, // produção (será configurado depois)
-  ].filter(Boolean), // Remove valores undefined
+    "https://finance-monitor-henna.vercel.app/" // produção (Vercel
+  ],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],

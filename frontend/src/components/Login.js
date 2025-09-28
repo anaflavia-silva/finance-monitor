@@ -27,7 +27,7 @@ function Login({ onLogin }) {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/auth/${endpoint}`,
+        `https://finance-monitor-backend.onrender.com/api/auth/${endpoint}`,
         {
           method: "POST",
           headers: {

@@ -29,11 +29,14 @@ function App() {
   const fetchTransactions = useCallback(async () => {
     if (!token) return;
     try {
-      const response = await fetch("http://localhost:5000/api/transactions", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        "https://finance-monitor-backend.onrender.com/api/transactions",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       const data = await response.json();
       setTransactions(data);
     } catch (error) {
@@ -44,11 +47,14 @@ function App() {
   const fetchCategories = useCallback(async () => {
     if (!token) return;
     try {
-      const response = await fetch("http://localhost:5000/api/categories", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        "https://finance-monitor-backend.onrender.com/api/categories",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       const data = await response.json();
       setCategories(data);
     } catch (error) {
@@ -77,14 +83,17 @@ function App() {
 
   const addTransaction = async (transaction) => {
     try {
-      const response = await fetch("http://localhost:5000/api/transactions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(transaction),
-      });
+      const response = await fetch(
+        "https://finance-monitor-backend.onrender.com/api/transactions",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(transaction),
+        }
+      );
 
       if (response.ok) {
         fetchTransactions();
@@ -100,7 +109,7 @@ function App() {
     if (window.confirm("Tem certeza que deseja deletar esta transação?")) {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/transactions/${id}`,
+          `https://finance-monitor-backend.onrender.com/api/transactions/${id}`,
           {
             method: "DELETE",
             headers: {

@@ -15,7 +15,7 @@ function CategoryManager({ token }) {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/categories", {
+      const response = await fetch("https://finance-monitor-backend.onrender.com/api/categories", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -31,8 +31,8 @@ function CategoryManager({ token }) {
     e.preventDefault();
 
     const url = editingCategory
-      ? `http://localhost:5000/api/categories/${editingCategory.id}`
-      : "http://localhost:5000/api/categories";
+      ? `https://finance-monitor-backend.onrender.com/api/categories/${editingCategory.id}`
+      : "https://finance-monitor-backend.onrender.com/api/categories";
 
     const method = editingCategory ? "PUT" : "POST";
 
@@ -67,7 +67,7 @@ function CategoryManager({ token }) {
     if (window.confirm("Tem certeza que deseja deletar esta categoria?")) {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/categories/${id}`,
+          `https://finance-monitor-backend.onrender.com/api/categories/${id}`,
           {
             method: "DELETE",
             headers: {

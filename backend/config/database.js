@@ -1,34 +1,28 @@
-const mysql = require("mysql2");
+const { Pool } = require("pg");
 require("dotenv").config();
 
-console.log("🔍 Conectando ao banco...");
-console.log("Host:", process.env.DB_HOST);
-console.log("User:", process.env.DB_USER);
-console.log("Database:", process.env.DB_NAME);
+console.log("🔍 Conectando ao PostgreSQL...");
 
-const connection = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  port: process.env.DB_PORT || 3306,
-  ssl: false,
-  connectTimeout: 60000,
-  acquireTimeout: 60000,
-  timeout: 60000,
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl:
+    process.env.NODE_ENV === "production"
+      ? { rejectUnauthorized: false }
+      : false,
 });
 
-connection.connect((err) => {
+// Testar conexão
+pool.connect((err, client, release) => {
   if (err) {
-    console.error("❌ Erro ao conectar com MySQL:");
-    console.error("Código:", err.code);
-    console.error("Mensagem:", err.message);
-    console.error("Host tentativa:", process.env.DB_HOST);
+    console.error("❌ Erro ao conectar com PostgreSQL:", err.message);
     return;
   }
-  console.log("✅ Conectado ao MySQL com sucesso!");
-  console.log("🏠 Host:", process.env.DB_HOST);
-  console.log("📦 Database:", process.env.DB_NAME);
+  console.log("✅ Conectado ao PostgreSQL com sucesso!");
+  console.log(
+    "🌐 Database:",
+    process.env.DATABASE_URL ? "Render PostgreSQL" : "Local/Não configurado"
+  );
+  release();
 });
 
-module.exports = connection;
+module.exports = pool;

@@ -5,8 +5,12 @@ require("dotenv").config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+const corsOptions = {
+  origin: "https://finance-monitor-one.vercel.app/",
+};
+
 // Middlewares
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Routes

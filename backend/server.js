@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 5000;
 const corsOptions = {
   origin: [
     "http://localhost:3000", // desenvolvimento
-    "https://finance-monitor-henna.vercel.app/" // produção (Vercel
+    "https://finance-monitor-henna.vercel.app" // produção vercel
   ],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
